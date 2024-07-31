@@ -4,11 +4,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import java.util.Map;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.AllArgsConstructor;;
 
@@ -24,5 +20,13 @@ public class ImcController {
 	public @ResponseBody Map<String, String> calculate(@RequestBody ImcDTO data) {
 		
 		return this.imcService.calculate(data);
+	}
+
+	@GetMapping
+	public Map<String, Object> getImc() {
+		ImcDTO imc = new ImcDTO(80, 1.75);
+		return Map.of("Poids", imc.poids(),
+				"Taille", imc.taille(),
+				"IMC", this.imcService.calculate(imc));
 	}
 }
