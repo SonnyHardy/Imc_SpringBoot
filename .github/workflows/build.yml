@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push-docker-image
     steps:
-      - name: create folder on remote VM
+      - name: server-deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
@@ -39,10 +39,10 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            docker pull sonnyhardy/imc:latest
-            docker stop imc-1 || true
-            docker rm imc-1 || true
-            docker run -d --name imc-1 -p 80:80 sonnyhardy/imc:latest
+            sudo docker pull sonnyhardy/imc:latest
+            sudo docker stop imc-1 || true
+            sudo docker rm imc-1 || true
+            sudo docker run -d --name imc-1 -p 80:80 sonnyhardy/imc:latest
 
 
   #build:
