@@ -42,7 +42,7 @@ jobs:
             sudo docker pull sonnyhardy/imc:latest
             sudo docker stop imc-1 || true
             sudo docker rm imc-1 || true
-            sudo docker run -d --name imc-1 -p 80:80 sonnyhardy/imc:latest
+            sudo docker run -d --name imc-1 -p 8080:8080 sonnyhardy/imc:latest
 
 
   #build:
