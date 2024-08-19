@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin
+@CrossOrigin(origins = "http://127.0.0.1:5500/src/imc-API-fetch/index.html")
 @RequestMapping(path = "imc", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public class ImcController {
 	
