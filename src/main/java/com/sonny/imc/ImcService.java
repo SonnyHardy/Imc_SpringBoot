@@ -1,19 +1,23 @@
 package com.sonny.imc;
 
+import java.util.HashMap;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class ImcService {
 
 	public Map<String, String> calculate(ImcDTO data) {
 		double imc = data.poids() / Math.pow(data.taille(), 2);
-		imc = Math.round(imc * 100) /100;
+		imc = (double) Math.round(imc * 100) /100;
 		
 		String advise = this.analyse(imc);
-		return Map.of("imc", String.valueOf(imc),
-					  "avis", advise);
+		Map<String, String> result = Map.of("imc", String.valueOf(imc), "avis", advise);
+		log.info(result.toString());
+		return result;
 	}
 	
 	private String analyse(double imc) {
