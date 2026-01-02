@@ -1,0 +1,49 @@
+openapi: "3.1.0"
+info:
+  title: "Imc_project API"
+  description: "Imc_project API"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8080"
+    description: "Local server"
+paths:
+  /imc:
+    post:
+      summary: "POST imc"
+      operationId: "calculate"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImcDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+    get:
+      summary: "GET imc"
+      operationId: "getImc"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+components:
+  schemas:
+    ImcDTO:
+      type: "object"
+      properties:
+        poids:
+          type: "number"
+          format: "double"
+          nullable: true
+        taille:
+          type: "number"
+          format: "double"
+          nullable: true
